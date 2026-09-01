@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mery Renuka Duru — AI/ML Engineer. B.Tech. graduate in Artificial Intelligence & Machine Learning. Building intelligent systems in Python, TensorFlow, NLP, and LangChain.">
+  <meta name="keywords" content="AI Engineer, ML Engineer, Fresher, Python, NLP, Machine Learning, Bhimavaram, SRKR">
+  <meta property="og:title" content="Mery Renuka Duru — AI/ML Engineer">
+  <meta property="og:description" content="AI/ML Engineer · Fresher · Building intelligent systems that ship to production.">
+  <title>Mery Renuka Duru — AI/ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#080b12; --surface:#0d1117; --surface2:#111827;
+      --border:rgba(255,255,255,0.06); --border-hover:rgba(99,179,237,0.3);
+      --text:#e8edf5; --muted:#6b7888;
+      --accent:#63b3ed; --accent2:#a78bfa;
+      --gold:#c9a96e; --green:#4ade80; --danger:#f87171;
+      --radius:12px; --shadow:rgba(0,0,0,0.3);
+    }
+    html[data-theme="light"] {
+      --bg:#eef6f9; --surface:#ffffff; --surface2:#f3fafd;
+      --border:rgba(15,76,92,0.10); --border-hover:rgba(14,116,144,0.35);
+      --text:#0f2a34; --muted:#5b7b86;
+      --accent:#0e7490; --accent2:#0891b2;
+      --gold:#b8860b; --green:#16a34a; --danger:#dc2626;
+      --shadow:rgba(15,76,92,0.10);
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+    html[data-theme="light"] body::before{opacity:.4}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 60px;background:rgba(8,11,18,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
+    html[data-theme="light"] nav{background:rgba(255,255,255,.88)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.02em}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;list-style:none;gap:32px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--text)}
+    .nav-links a.active{border-bottom:1px solid var(--accent);padding-bottom:2px}
+    .nav-right{display:flex;align-items:center;gap:10px}
+    .theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-size:1rem}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .theme-toggle .icon-sun{display:none}
+    .theme-toggle .icon-moon{display:block}
+    html[data-theme="light"] .theme-toggle .icon-sun{display:block}
+    html[data-theme="light"] .theme-toggle .icon-moon{display:none}
+
+    /* HERO */
+    #home{min-height:100vh;display:flex;align-items:center;padding:120px 60px 80px;position:relative;overflow:hidden}
+    .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(99,179,237,.07) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none}
+    html[data-theme="light"] .hero-glow{background:radial-gradient(circle,rgba(14,116,144,.10) 0%,transparent 70%)}
+    .hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.05) 0%,transparent 70%);bottom:0;left:80px;pointer-events:none}
+    html[data-theme="light"] .hero-glow2{background:radial-gradient(circle,rgba(8,145,178,.08) 0%,transparent 70%)}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;width:100%}
+    .hero-label{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    .hero-label::before{content:'';display:block;width:30px;height:1px;background:var(--accent)}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;color:var(--text);margin-bottom:8px}
+    .hero-name em{font-style:italic;color:var(--gold)}
+    .hero-tagline{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--muted);margin-bottom:28px;letter-spacing:.05em}
+    .hero-desc{font-size:1.02rem;color:var(--muted);max-width:520px;line-height:1.85;margin-bottom:44px}
+    .hero-desc strong{color:var(--text)}
+    .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .btn-primary{padding:13px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.02em;display:inline-flex;align-items:center;gap:6px}
+    html:not([data-theme="light"]) .btn-primary{color:#080b12}
+    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn-ghost{padding:12px 28px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+    .btn-ghost:hover{border-color:var(--border-hover);transform:translateY(-1px)}
+    .hero-image-wrap{position:relative}
+    .hero-image-frame{width:380px;height:440px;border-radius:20px;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--surface)}
+    .hero-image-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%);transition:filter .4s}
+    .hero-image-frame:hover img{filter:grayscale(0%)}
+    .hero-image-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,11,18,.55) 0%,transparent 55%)}
+    html[data-theme="light"] .hero-image-frame::after{background:linear-gradient(to top,rgba(15,76,92,.16) 0%,transparent 55%)}
+    .hero-stats{position:absolute;bottom:-20px;left:-30px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 22px;display:flex;gap:24px;box-shadow:0 12px 40px var(--shadow)}
+    .hero-stat{text-align:center}
+    .hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--text);display:block}
+    .hero-stat-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    /* Availability badge */
+    .availability-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:100px;margin-bottom:22px}
+    .availability-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    .availability-badge span{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--green);letter-spacing:.08em;text-transform:uppercase}
+
+    /* SECTIONS COMMON */
+    section{position:relative;z-index:1}
+    .section-inner{max-width:1100px;margin:0 auto;padding:100px 60px}
+    .section-label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+    .section-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--text);margin-bottom:50px}
+
+    /* ABOUT */
+    #about{background:var(--surface);transition:background .35s}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .about-text p{color:var(--muted);margin-bottom:18px;font-size:.97rem;line-height:1.85}
+    .about-text p strong{color:var(--text)}
+    .about-meta{display:flex;flex-direction:column;gap:0}
+    .about-meta-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+    .about-meta-key{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+    .about-meta-val{font-size:.87rem;color:var(--text);text-align:right}
+
+    /* SKILLS */
+    #skills{background:var(--bg);transition:background .35s}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+    .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:all .25s;position:relative;overflow:hidden}
+    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+    .skill-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+    .skill-card:hover::before{opacity:1}
+    .skill-icon{font-size:1.4rem;margin-bottom:12px}
+    .skill-card h3{font-size:.8rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .skill-tag{font-family:'DM Mono',monospace;font-size:.66rem;padding:3px 9px;background:rgba(99,179,237,.07);border:1px solid rgba(99,179,237,.15);border-radius:4px;color:var(--accent)}
+    html[data-theme="light"] .skill-tag{background:rgba(14,116,144,.06);border-color:rgba(14,116,144,.18)}
+
+    /* EDUCATION */
+    #education{background:var(--surface);transition:background .35s}
+    .edu-timeline{position:relative;padding-left:32px}
+    .edu-timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent)}
+    .edu-item{position:relative;margin-bottom:48px}
+    .edu-item:last-child{margin-bottom:0}
+    .edu-dot{position:absolute;left:-38px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(99,179,237,.25)}
+    html[data-theme="light"] .edu-dot{border-color:var(--surface);box-shadow:0 0 0 3px rgba(14,116,144,.2)}
+    .edu-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;transition:all .25s;position:relative;overflow:hidden}
+    .edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+    .edu-card:hover{border-color:var(--border-hover);transform:translateX(4px)}
+    .edu-card:hover::before{opacity:1}
+    .edu-year{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .edu-year-badge{background:rgba(99,179,237,.1);border:1px solid rgba(99,179,237,.2);border-radius:4px;padding:2px 8px}
+    html[data-theme="light"] .edu-year-badge{background:rgba(14,116,144,.08);border-color:rgba(14,116,144,.2)}
+    .edu-degree{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--text);margin-bottom:4px}
+    .edu-institution{font-size:.88rem;color:var(--muted);margin-bottom:12px;font-weight:400}
+    .edu-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+    .edu-meta-tag{font-family:'DM Mono',monospace;font-size:.65rem;padding:4px 10px;border-radius:100px;background:var(--surface);border:1px solid var(--border);color:var(--muted)}
+    .edu-meta-tag.highlight{background:rgba(201,169,110,.08);border-color:rgba(201,169,110,.25);color:var(--gold)}
+    .edu-desc{font-size:.85rem;color:var(--muted);line-height:1.7}
+
+    /* PROJECTS TEASER */
+    #projects-teaser{background:var(--bg);transition:background .35s}
+    .projects-teaser-inner{text-align:center;max-width:680px;margin:0 auto}
+    .projects-teaser-inner .section-label{justify-content:center}
+    .projects-teaser-inner .section-label::before{display:none}
+    .projects-count-row{display:flex;justify-content:center;gap:40px;margin:0 auto 48px}
+    .pcount{text-align:center}
+    .pcount-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--text);display:block;line-height:1}
+    .pcount-label{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;display:block}
+    .projects-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+    .proj-preview-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;text-align:left;transition:all .25s}
+    .proj-preview-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+    .proj-preview-type{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    .proj-preview-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:6px}
+    .proj-preview-desc{font-size:.8rem;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .see-all-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);text-decoration:none;font-size:.9rem;font-weight:500;transition:all .25s}
+    .see-all-btn:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 12px 30px var(--shadow)}
+    .see-all-btn .arrow{transition:transform .2s}
+    .see-all-btn:hover .arrow{transform:translateX(4px)}
+
+    /* RESUME */
+    #resume{background:var(--surface);transition:background .35s}
+    .resume-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:50px;display:grid;grid-template-columns:1fr 260px;gap:60px;align-items:center}
+    .resume-preview-img{border-radius:10px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 60px var(--shadow);cursor:pointer;transition:transform .3s}
+    .resume-preview-img:hover{transform:scale(1.02) rotate(.5deg)}
+    .resume-preview-img img{width:100%;display:block}
+    .resume-info h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:14px}
+    .resume-info p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:28px}
+
+    /* CONTACT */
+    #contact{background:var(--bg);transition:background .35s}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+    .contact-info h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--text);margin-bottom:16px}
+    .contact-info p{color:var(--muted);font-size:.9rem;line-height:1.8;margin-bottom:32px}
+    .contact-links{display:flex;flex-direction:column;gap:12px}
+    .contact-link{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font-size:.87rem;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .2s}
+    .contact-link:hover{border-color:var(--border-hover);transform:translateX(4px)}
+    .contact-link-icon{width:32px;height:32px;border-radius:6px;background:rgba(99,179,237,.08);border:1px solid rgba(99,179,237,.15);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+    html[data-theme="light"] .contact-link-icon{background:rgba(14,116,144,.06);border-color:rgba(14,116,144,.15)}
+    .contact-link-label{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:2px}
+    .contact-form{display:flex;flex-direction:column;gap:14px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-label{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .form-input{padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:.9rem;transition:border-color .2s,background .35s,color .35s;outline:none}
+    .form-input:focus{border-color:var(--accent)}
+    .form-input::placeholder{color:var(--muted)}
+    textarea.form-input{resize:vertical;min-height:120px}
+
+    /* FOOTER */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;transition:background .35s}
+    .footer-copy{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--text)}
+
+    /* RESPONSIVE */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease forwards}
+    @media(max-width:900px){
+      nav{padding:14px 20px}
+      .nav-links{display:none}
+      #home{padding:100px 24px 60px}
+      .hero-inner{grid-template-columns:1fr}
+      .hero-image-wrap{display:none}
+      .section-inner{padding:60px 24px}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+      .projects-preview-grid{grid-template-columns:1fr}
+      .resume-card{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:12px;padding:20px}
+      .hero-actions{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">MRD<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <div class="availability-badge">
+        <span class="dot"></span>
+        <span>Available for opportunities</span>
+      </div>
+      <p class="hero-label">AI / ML Engineer</p>
+      <h1 class="hero-name">Mery <em>Renuka</em><br>Duru</h1>
+      <p class="hero-tagline">B.Tech. AI&ML Graduate · Fresher · Bhimavaram, India</p>
+      <p class="hero-desc">
+        Welcome to my portfolio, where creativity meets functionality.<br><br>
+        Explore my work, driven by a passion for innovation and a commitment to deliver exceptional results.
+      </p>
+      <div class="hero-actions">
+        <a href="https://www.linkedin.com/in/mery-renuka-duru-a59826291/" class="btn-primary" target="_blank">Connect on LinkedIn ↗</a>
+        <a href="projects.html" class="btn-ghost">View All Projects →</a>
+        <a href="#contact" class="btn-ghost">Hire Me</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-image-frame">
+        <img id="hero-img" src="rens.jpg" alt="Mery Renuka Duru" onerror="this.src='https://via.placeholder.com/380x440/0d1117/63b3ed?text=MRD'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text" id="about-text-render">
+        <p>I'm a <strong>B.Tech. AI & ML graduate</strong> from SRKR Engineering College with a CGPA of 9.0. As a fresher, I bring hands-on experience building and deploying real machine-learning systems — not just academic projects.</p>
+        <p>My work covers the full ML lifecycle: data wrangling, feature engineering, model training, evaluation, and cloud deployment. I've shipped to Streamlit Cloud, Hugging Face Spaces, and Google AI Studio using Python, Scikit-learn, TensorFlow, NLP pipelines, and LangChain.</p>
+        <p>I'm actively seeking my first full-time role where I can keep growing fast, ship impactful systems, and learn from experienced engineers.</p>
+      </div>
+      <div class="about-meta">
+        <div class="about-meta-item">
+          <span class="about-meta-key">Status</span>
+          <span class="about-meta-val" style="color:var(--green)">● Open to opportunities</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">Role Target</span>
+          <span class="about-meta-val">AI / ML Engineer · Data Scientist</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">Degree</span>
+          <span class="about-meta-val">B.Tech. AI & ML — 2026</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">College</span>
+          <span class="about-meta-val">SRKR Engineering College</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">Internship</span>
+          <span class="about-meta-val">ML Intern · AIMERS · 2024</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">Location</span>
+          <span class="about-meta-val">Bhimavaram, India (Open to Remote)</span>
+        </div>
+        <div class="about-meta-item">
+          <span class="about-meta-key">Email</span>
+          <span class="about-meta-val">meryrenukad938@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">Academic Journey</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-timeline">
+
+      <!-- B.Tech -->
+      <div class="edu-item">
+        <div class="edu-dot" style="background:var(--accent)"></div>
+        <div class="edu-card">
+          <div class="edu-year">
+            <span class="edu-year-badge">2022 – 2026</span>
+            <span style="color:var(--green);font-size:.65rem">● Graduated</span>
+          </div>
+          <div class="edu-degree">B.Tech. — Artificial Intelligence & Machine Learning</div>
+          <div class="edu-institution">SRKR Engineering College, Bhimavaram · Affiliated to JNTUK</div>
+          <div class="edu-meta">
+            <span class="edu-meta-tag highlight">CGPA 9.0 / 10</span>
+            <span class="edu-meta-tag">AI & ML Specialization</span>
+            <span class="edu-meta-tag">ML Intern @ AIMERS 2024</span>
+          </div>
+          <div class="edu-desc">Specialized in machine learning, deep learning, NLP, computer vision and data science. Built and deployed multiple real-world ML systems. Completed internship at AIMERS (2024) gaining industry exposure in applied ML.</div>
+        </div>
+      </div>
+
+      <!-- Intermediate -->
+      <div class="edu-item">
+        <div class="edu-dot" style="background:var(--accent2)"></div>
+        <div class="edu-card">
+          <div class="edu-year">
+            <span class="edu-year-badge">2020 – 2022</span>
+          </div>
+          <div class="edu-degree">Intermediate (Class XII) — MPC</div>
+          <div class="edu-institution">Sri Nagarjuna Junior College, Gullapalli</div>
+          <div class="edu-meta">
+            <span class="edu-meta-tag highlight">62.5%</span>
+            <span class="edu-meta-tag">MPC</span>
+          </div>
+          <div class="edu-desc">Completed MPC stream with a strong foundation in mathematics and sciences.</div>
+        </div>
+      </div>
+
+      <!-- SSC -->
+      <div class="edu-item">
+        <div class="edu-dot" style="background:var(--gold)"></div>
+        <div class="edu-card">
+          <div class="edu-year">
+            <span class="edu-year-badge">2019 – 2020</span>
+          </div>
+          <div class="edu-degree">SSC (Class X)</div>
+          <div class="edu-institution">Aided Bapuji High School</div>
+          <div class="edu-meta">
+            <span class="edu-meta-tag highlight">9.7 GPA</span>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Technical Expertise</p>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="skills-grid" id="skills-render"></div>
+  </div>
+</section>
+
+<!-- PROJECTS TEASER -->
+<section id="projects-teaser">
+  <div class="section-inner" style="text-align:center">
+    <p class="section-label" style="justify-content:center"><span style="display:none"></span>Portfolio</p>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="projects-count-row">
+      <div class="pcount"><span class="pcount-num">3+</span><span class="pcount-label">Live Deployments</span></div>
+      <div class="pcount"><span class="pcount-num">97%</span><span class="pcount-label">Best Accuracy</span></div>
+      <div class="pcount"><span class="pcount-num">3</span><span class="pcount-label">Total Projects</span></div>
+    </div>
+    <div class="projects-preview-grid">
+      <div class="proj-preview-card">
+        <div class="proj-preview-type">Machine Learning · Deployed</div>
+        <div class="proj-preview-title">SalesForecast Prediction</div>
+        <div class="proj-preview-desc">Time-series forecasting with XGBoost, achieving RMSE of 0.97. Live on Streamlit Cloud.</div>
+      </div>
+      <div class="proj-preview-card">
+        <div class="proj-preview-type">NLP · Deployed</div>
+        <div class="proj-preview-title">Email Spam Detection</div>
+        <div class="proj-preview-desc">97.88% accuracy spam classifier with Naive Bayes + CountVectorizer. Deployed on Hugging Face.</div>
+      </div>
+      <div class="proj-preview-card">
+        <div class="proj-preview-type">Full-Stack · AI Health</div>
+        <div class="proj-preview-title">HealthiLink</div>
+        <div class="proj-preview-desc">AI-powered health platform connecting patients with doctors, with symptom analysis and appointment booking.</div>
+      </div>
+    </div>
+    <a href="projects.html" class="see-all-btn">
+      View All Projects &amp; Details <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="section-inner">
+    <p class="section-label">Documents</p>
+    <h2 class="section-title">Resume</h2>
+    <div class="resume-card">
+      <div class="resume-info">
+        <h3>Mery Renuka Duru</h3>
+        <p>AI/ML Engineer with hands-on experience across the full ML lifecycle — from data engineering to deployed production models. View or download my complete resume below.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a id="resume-link" href="resume.pdf" target="_blank" class="btn-primary">View Resume →</a>
+          <a id="resume-dl" href="resume.pdf" download class="btn-ghost">Download PDF</a>
+        </div>
+      </div>
+      <a id="resume-link2" href="resume.pdf" target="_blank">
+        <div class="resume-preview-img">
+          <img id="resume-preview-img" src="pi.png" alt="Resume Preview" onerror="this.parentElement.parentElement.style.display='none'">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Let's build something together.</h3>
+        <p>Open to full-time roles, internships, freelance projects, and collaborations. I respond within 24 hours.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/mery-renuka-duru-a59826291/" class="contact-link" target="_blank">
+            <div class="contact-link-icon">in</div>
+            <div><div class="contact-link-label">LinkedIn</div><div>mery-renuka-duru</div></div>
+          </a>
+          <a href="mailto:meryrenukad938@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            <div><div class="contact-link-label">Email</div><div>meryrenukad938@gmail.com</div></div>
+          </a>
+          <a href="tel:+917396562677" class="contact-link">
+            <div class="contact-link-icon">✆</div>
+            <div><div class="contact-link-label">Phone</div><div>+91 73965 62677</div></div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mwpnyqwl" method="POST">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" name="message" rows="5" placeholder="Tell me about the role or project..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Mery Renuka Duru. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/mery-renuka-duru-a59826291/" target="_blank">LinkedIn</a>
+    <a href="mailto:meryrenukad938@gmail.com">Email</a>
+    <a href="projects.html">Projects</a>
+    <a href="resume.pdf" target="_blank">Resume</a>
+  </div>
+</footer>
+
+<script>
+const THEME_KEY='portfolio_theme';
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t)}
+function toggleTheme(){const c=document.documentElement.getAttribute('data-theme')||'dark';const n=c==='dark'?'light':'dark';applyTheme(n);try{localStorage.setItem(THEME_KEY,n)}catch{}}
+(function(){let s=null;try{s=localStorage.getItem(THEME_KEY)}catch{}if(s==='light'||s==='dark'){applyTheme(s)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){applyTheme('light')}else{applyTheme('dark')}})();
+const skills=[
+  {icon:'⚡',title:'Programming',tags:'Python, JavaScript, Java (Basic)'},
+  {icon:'🧠',title:'AI & Machine Learning',tags:'NumPy, Pandas, Scikit-learn, TensorFlow, Deep Learning, NLP, LLM, LangChain, Agentic AI, Pinecone'},
+  {icon:'📊',title:'Data Science',tags:'Data Analysis, Visualization, Preprocessing, Feature Engineering, EDA'},
+  {icon:'🛠',title:'Tools & Platforms',tags:'GitHub, Streamlit, Gradio, Hugging Face, Google AI Studio, Vercel, Docker, n8n'},
+  {icon:'🎨',title:'Frontend',tags:'HTML, CSS, JavaScript, UI/UX Basics'},
+  {icon:'💡',title:'Core CS',tags:'DSA, OOPs, Operating Systems, DBMS'}
+];
+function renderSkills(){const el=document.getElementById('skills-render');if(!el)return;el.innerHTML=skills.map(s=>`<div class="skill-card"><div class="skill-icon">${s.icon}</div><h3>${s.title}</h3><div class="skill-tags">${s.tags.split(',').map(t=>`<span class="skill-tag">${t.trim()}</span>`).join('')}</div></div>`).join('')}
+function renderResume(){const url='resume.pdf';const link=document.getElementById('resume-link');const dl=document.getElementById('resume-dl');const link2=document.getElementById('resume-link2');const img=document.getElementById('resume-preview-img');if(link)link.href=url;if(dl)dl.href=url;if(link2)link2.href=url;if(img){img.src='pi.png';img.style.display='block'}}
+function renderPhoto(){const img=document.getElementById('hero-img');if(img)img.src='rens.jpg'}
+renderSkills();renderResume();renderPhoto();
+</script>
+</body>
+</html>

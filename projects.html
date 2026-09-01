@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Mery Renuka Duru — AI/ML Engineer. Selected projects in health technology, sales forecasting, and NLP.">
+  <title>Projects — Mery Renuka Duru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#080b12;--surface:#0d1117;--surface2:#111827;
+      --border:rgba(255,255,255,0.06);--border-hover:rgba(99,179,237,0.3);
+      --text:#e8edf5;--muted:#6b7888;
+      --accent:#63b3ed;--accent2:#a78bfa;
+      --gold:#c9a96e;--green:#4ade80;--danger:#f87171;
+      --radius:12px;--shadow:rgba(0,0,0,0.3);
+    }
+    html[data-theme="light"]{
+      --bg:#eef6f9;--surface:#ffffff;--surface2:#f3fafd;
+      --border:rgba(15,76,92,0.10);--border-hover:rgba(14,116,144,0.35);
+      --text:#0f2a34;--muted:#5b7b86;
+      --accent:#0e7490;--accent2:#0891b2;
+      --gold:#b8860b;--green:#16a34a;--danger:#dc2626;
+      --shadow:rgba(15,76,92,0.10);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+    html[data-theme="light"] body::before{opacity:.4}
+
+    /* ── NAV (identical to index) ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 60px;background:rgba(8,11,18,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
+    html[data-theme="light"] nav{background:rgba(255,255,255,.88)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.02em}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;list-style:none;gap:32px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a.active{color:var(--text);border-bottom:1px solid var(--accent);padding-bottom:2px}
+    .nav-right{display:flex;align-items:center;gap:10px}
+    .theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-size:1rem}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .theme-toggle .icon-sun{display:none}
+    .theme-toggle .icon-moon{display:block}
+    html[data-theme="light"] .theme-toggle .icon-sun{display:block}
+    html[data-theme="light"] .theme-toggle .icon-moon{display:none}
+    .nav-back-btn{font-family:'DM Mono',monospace;font-size:.7rem;padding:7px 14px;border:1px solid var(--border);border-radius:6px;color:var(--muted);text-decoration:none;cursor:pointer;background:transparent;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .nav-back-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* ── PROJECTS GRID ── */
+    .projects-section{max-width:1100px;margin:0 auto;padding:50px 60px 100px;position:relative;z-index:1}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .25s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+    .project-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 50px var(--shadow)}
+    .project-card:hover::before{opacity:1}
+    .project-card.hidden{display:none}
+    .project-badge-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+    .project-type{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+    .project-status{font-family:'DM Mono',monospace;font-size:.6rem;padding:3px 8px;border-radius:100px;border:1px solid}
+    .project-status.deployed{color:var(--green);border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.06)}
+    .project-status.research{color:var(--accent);border-color:rgba(99,179,237,.3);background:rgba(99,179,237,.06)}
+    .project-status.demo{color:var(--accent2);border-color:rgba(167,139,250,.3);background:rgba(167,139,250,.06)}
+    .project-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:10px}
+    .project-card .project-desc{font-size:.87rem;color:var(--muted);line-height:1.75;flex:1;margin-bottom:18px}
+    .project-highlights{list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:6px}
+    .project-highlights li{font-size:.8rem;color:var(--muted);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+    .project-highlights li::before{content:'→';color:var(--accent);font-family:'DM Mono',monospace;font-size:.72rem;flex-shrink:0;margin-top:2px}
+    .project-tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+    .project-tech span{font-family:'DM Mono',monospace;font-size:.63rem;padding:3px 8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15);color:var(--accent2);border-radius:4px}
+    html[data-theme="light"] .project-tech span{background:rgba(8,145,178,.06);border-color:rgba(8,145,178,.18)}
+    .project-links{display:flex;gap:12px;margin-top:auto}
+    .project-link{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;transition:gap .15s,color .2s;padding:8px 14px;border:1px solid rgba(99,179,237,.2);border-radius:6px;background:rgba(99,179,237,.04)}
+    .project-link:hover{gap:8px;background:rgba(99,179,237,.1)}
+    html[data-theme="light"] .project-link{border-color:rgba(14,116,144,.2);background:rgba(14,116,144,.04)}
+    html[data-theme="light"] .project-link:hover{background:rgba(14,116,144,.09)}
+
+    /* ── FEATURED CARD (wider, top of grid) ── */
+    .project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    @media(max-width:760px){.project-card.featured{grid-column:auto;display:flex;flex-direction:column}}
+
+    /* ── EMPTY STATE ── */
+    .empty-state{text-align:center;padding:80px 20px;color:var(--muted)}
+    .empty-state h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:8px;color:var(--text)}
+
+    /* ── CTA ── */
+    .cta-section{background:var(--surface);border-top:1px solid var(--border);padding:80px 60px;text-align:center;position:relative;z-index:1}
+    .cta-section h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--text);margin-bottom:14px}
+    .cta-section p{color:var(--muted);font-size:.95rem;max-width:440px;margin:0 auto 32px}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{padding:13px 28px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+    html:not([data-theme="light"]) .btn-primary{color:#080b12}
+    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn-ghost{padding:12px 28px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--border-hover);transform:translateY(-1px)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;transition:background .35s}
+    .footer-copy{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--text)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .5s ease forwards}
+    @media(max-width:900px){
+      nav{padding:14px 20px}
+      .nav-links{display:none}
+      .projects-section{padding:40px 24px 80px}
+      .projects-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:12px;padding:20px}
+      .cta-section{padding:60px 24px}
+    }
+  
+</style></head><body>
+<nav><a href="index.html" class="nav-logo" id="nav-logo">MRD<span>.</span></a><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#education">Education</a></li><li><a href="index.html#skills">Skills</a></li><li><a href="projects.html" class="active">Projects</a></li><li><a href="index.html#resume">Resume</a></li><li><a href="index.html#contact">Contact</a></li></ul><div class="nav-right"><button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"><span class="icon-sun">☀</span><span class="icon-moon">☾</span></button></div></nav>
+<main id="projects-main">
+  <section class="projects-section">
+    <div class="projects-grid">
+      <article class="project-card featured fade-up">
+        <div>
+          <div class="project-badge-row"><span class="project-type">Full-Stack · AI Health</span><span class="project-status deployed">● Live</span></div>
+          <h3>HealthiLink</h3>
+          <p class="project-desc">An AI-powered health platform connecting patients with doctors, offering symptom analysis, appointment booking, and personalised health insights. Built end-to-end with a Python/FastAPI backend, React frontend, and an integrated ML symptom-checker model.</p>
+          <ul class="project-highlights"><li>ML symptom-checker trained on medical datasets with 92%+ intent accuracy</li><li>Real-time appointment booking with doctor availability calendar</li><li>Secure patient-doctor chat and health record management</li><li>Deployed on Vercel (frontend) + Render (backend API)</li></ul>
+          <div class="project-tech"><span>Python</span><span>FastAPI</span><span>React</span><span>Machine Learning</span><span>NLP</span><span>Vercel</span><span>Render</span></div>
+          <div class="project-links"><a class="project-link" href="#">Live Demo →</a><a class="project-link" href="#">GitHub →</a></div>
+        </div>
+      </article>
+      <article class="project-card fade-up">
+        <div class="project-badge-row"><span class="project-type">Machine Learning</span><span class="project-status deployed">● Live</span></div>
+        <h3>SalesForecast Prediction</h3>
+        <p class="project-desc">End-to-end time-series sales forecasting web application. Built with XGBoost, engineered lag-based and rolling-window features, and deployed on Streamlit Cloud with GitHub CI/CD integration.</p>
+        <ul class="project-highlights"><li>RMSE of 0.97 on held-out test set — outperforming baseline by 34%</li><li>Custom lag features + rolling statistics capture seasonality without leakage</li><li>Interactive Streamlit UI: upload CSV, get instant forecast chart</li><li>Automated retraining pipeline on new data via GitHub Actions</li></ul>
+        <div class="project-tech"><span>XGBoost</span><span>Python</span><span>Streamlit</span><span>Pandas</span><span>Scikit-learn</span><span>GitHub Actions</span></div>
+        <div class="project-links"><a class="project-link" href="https://salesforecastprediction-bmtnana6ucvyhk8vyynqzr.streamlit.app/">Live Demo →</a></div>
+      </article>
+      <article class="project-card fade-up">
+        <div class="project-badge-row"><span class="project-type">NLP</span><span class="project-status deployed">● Live</span></div>
+        <h3>Email Spam Detection</h3>
+        <p class="project-desc">Real-time email spam classifier deployed as an interactive Gradio app on Hugging Face Spaces. Production-level NLP pipeline with text preprocessing, vectorization, and Naive Bayes classification.</p>
+        <ul class="project-highlights"><li>97.88% accuracy on the SMS Spam Collection dataset</li><li>CountVectorizer with stop-word removal and custom tokenizer</li><li>Sub-100ms inference latency on Hugging Face free tier</li></ul>
+        <div class="project-tech"><span>Naive Bayes</span><span>NLP</span><span>CountVectorizer</span><span>Gradio</span><span>Hugging Face</span></div>
+        <div class="project-links"><a class="project-link" href="https://huggingface.co/spaces/Meryb/spam-detector">Live Demo →</a></div>
+      </article>
+    </div>
+  </section>
+</main>
+<footer><span class="footer-copy">© 2026 Mery Renuka Duru. All rights reserved.</span><div class="footer-links"><a href="index.html">Home</a><a href="https://www.linkedin.com/in/mery-renuka-duru-a59826291/">LinkedIn</a><a href="mailto:meryrenukad938@gmail.com">Email</a><a href="index.html#resume">Resume</a></div></footer></body></html>

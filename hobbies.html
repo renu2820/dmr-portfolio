@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond the Code — Mery Renuka Duru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#080b12;--surface:#0d1117;--surface2:#111827;
+      --border:rgba(255,255,255,0.06);--border-hover:rgba(201,169,110,0.35);
+      --text:#e8edf5;--muted:#6b7888;
+      --accent:#c9a96e;--accent2:#a78bfa;
+      --gold:#c9a96e;--green:#4ade80;
+      --radius:14px;--shadow:rgba(0,0,0,0.35);
+    }
+    html[data-theme="light"]{
+      --bg:#fdf8f0;--surface:#ffffff;--surface2:#fef9f0;
+      --border:rgba(92,60,15,0.10);--border-hover:rgba(184,134,11,0.35);
+      --text:#2a1f0a;--muted:#7a6540;
+      --accent:#b8860b;--accent2:#7c3aed;
+      --gold:#b8860b;--green:#16a34a;
+      --shadow:rgba(92,60,15,0.10);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
+
+    /* subtle paper texture in light mode */
+    html[data-theme="light"] body{background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 60px;background:rgba(8,11,18,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s}
+    html[data-theme="light"] nav{background:rgba(253,248,240,.92)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.02em}
+    .nav-logo span{color:var(--gold)}
+    .nav-right{display:flex;align-items:center;gap:10px}
+    .theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-size:1rem}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .theme-toggle .icon-sun{display:none}
+    .theme-toggle .icon-moon{display:block}
+    html[data-theme="light"] .theme-toggle .icon-sun{display:block}
+    html[data-theme="light"] .theme-toggle .icon-moon{display:none}
+    .back-btn{font-family:'DM Mono',monospace;font-size:.7rem;padding:7px 14px;border:1px solid var(--border);border-radius:6px;color:var(--muted);text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .back-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* PAGE HEADER */
+    .page-header{min-height:52vh;display:flex;align-items:flex-end;padding:120px 60px 60px;position:relative;overflow:hidden}
+    .header-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.08) 0%,transparent 70%);top:-100px;right:-80px;pointer-events:none}
+    html[data-theme="light"] .header-glow{background:radial-gradient(circle,rgba(184,134,11,.08) 0%,transparent 70%)}
+    .header-glow2{position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.04) 0%,transparent 70%);bottom:-60px;left:60px;pointer-events:none}
+    .header-inner{max-width:800px;position:relative;z-index:1}
+    .header-label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+    .header-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+    .header-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.05;color:var(--text);margin-bottom:20px}
+    .header-title em{font-style:italic;color:var(--gold)}
+    .header-desc{font-size:1rem;color:var(--muted);max-width:540px;line-height:1.85}
+
+    /* DIVIDER */
+    .gold-divider{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:0 60px;opacity:.3}
+
+    /* READING SECTION */
+    .content-section{max-width:1100px;margin:0 auto;padding:80px 60px}
+    .section-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+    .section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--gold)}
+    .section-heading{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--text);margin-bottom:40px;line-height:1.1}
+
+    /* READING */
+    .reading-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+    .reading-intro p{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:18px}
+    .reading-intro p strong{color:var(--text);font-weight:500}
+    .books-shelf{display:flex;flex-direction:column;gap:14px}
+    .book-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;transition:all .25s;display:flex;gap:16px;align-items:flex-start}
+    .book-item:hover{border-color:var(--border-hover);transform:translateX(4px)}
+    .book-spine{width:4px;border-radius:2px;background:linear-gradient(to bottom,var(--gold),var(--accent2));flex-shrink:0;align-self:stretch;min-height:40px}
+    .book-details{}
+    .book-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--text);margin-bottom:3px}
+    .book-author{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+    .book-note{font-size:.8rem;color:var(--muted);line-height:1.6;font-style:italic}
+
+    /* WRITING */
+    .writing-section{background:var(--surface);transition:background .35s}
+    .writing-intro{max-width:600px;margin-bottom:48px}
+    .writing-intro p{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:16px}
+    .writing-intro p strong{color:var(--text);font-weight:500}
+    .writing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .writing-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;transition:all .25s}
+    .writing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--accent2));opacity:0;transition:opacity .25s}
+    .writing-card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 14px 36px var(--shadow)}
+    .writing-card:hover::before{opacity:1}
+    .writing-type{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+    .writing-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px}
+    .writing-card p{font-size:.84rem;color:var(--muted);line-height:1.75}
+
+    /* MUSIC */
+    .music-row{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start}
+    .music-intro p{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:16px}
+    .music-intro p strong{color:var(--text);font-weight:500}
+    .genre-stack{display:flex;flex-direction:column;gap:12px}
+    .genre-item{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:all .25s}
+    .genre-item:hover{border-color:var(--border-hover);transform:translateX(4px)}
+    .genre-icon{font-size:1.4rem;flex-shrink:0}
+    .genre-label{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--text);margin-bottom:2px}
+    .genre-desc{font-size:.78rem;color:var(--muted)}
+
+    /* QUOTE BLOCK */
+    .quote-block{background:var(--surface);border-left:3px solid var(--gold);padding:32px 40px;border-radius:0 12px 12px 0;margin:60px 0 0;max-width:700px}
+    .quote-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--text);line-height:1.6;font-style:italic;margin-bottom:14px}
+    .quote-attr{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+    /* BACK CTA */
+    .cta-strip{background:var(--surface);border-top:1px solid var(--border);padding:60px;text-align:center}
+    .cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:12px;color:var(--text)}
+    .cta-strip p{color:var(--muted);font-size:.92rem;margin-bottom:28px}
+    .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{padding:13px 28px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+    html:not([data-theme="light"]) .btn-primary{color:#080b12}
+    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn-ghost{padding:12px 28px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--border-hover);transform:translateY(-1px)}
+
+    /* FOOTER */
+    footer{background:var(--bg);border-top:1px solid var(--border);padding:24px 60px;display:flex;justify-content:space-between;align-items:center}
+    .footer-copy{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--text)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease forwards}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}
+      .page-header{padding:100px 24px 50px}
+      .gold-divider{margin:0 24px}
+      .content-section{padding:60px 24px}
+      .reading-grid,.music-row{grid-template-columns:1fr;gap:40px}
+      .cta-strip{padding:50px 24px}
+      footer{flex-direction:column;gap:12px;padding:20px}
+      .cta-btns{flex-direction:column;align-items:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">MRD<span>.</span></a>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header fade-up">
+  <div class="header-glow"></div>
+  <div class="header-glow2"></div>
+  <div class="header-inner">
+    <p class="header-label">Beyond the Code</p>
+    <h1 class="header-title">Novels, notes &<br><em>nonstop music.</em></h1>
+    <p class="header-desc">I'm more than my tech stack. This page is a window into the things I love — stories that make me feel deeply, writing that keeps me grounded, and music that lives rent-free in my head.</p>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- READING -->
+<div class="content-section">
+  <p class="section-eyebrow">Passion I</p>
+  <h2 class="section-heading">Reading</h2>
+  <div class="reading-grid">
+    <div class="reading-intro">
+      <p>I read across genres — <strong>literary fiction, self-help, and quiet emotional novels</strong> that linger long after the last page. There's something about a story told with honesty that no algorithm can replicate.</p>
+      <p>My favourites are the kind of books that feel like a conversation — the ones where you finish a chapter and sit quietly for a moment before continuing. Telugu literature holds a very special place for me; reading in my mother tongue feels like coming home.</p>
+      <p>I also reach for self-help when I need direction or perspective. Not the hustle-culture kind — the kind that asks harder questions about who you want to become.</p>
+
+      <div class="quote-block">
+        <div class="quote-text">"A reader lives a thousand lives before she dies. The person who never reads lives only one."</div>
+        <div class="quote-attr">— George R.R. Martin</div>
+      </div>
+    </div>
+
+    <div class="books-shelf">
+
+      <div class="book-item">
+        <div class="book-spine" style="background:linear-gradient(to bottom,#f59e0b,#c9a96e)"></div>
+        <div class="book-details">
+          <div class="book-title">అమ్మ డైరీలో కొన్ని పేజీలు</div>
+          <div class="book-author">Telugu · Literary</div>
+          <div class="book-note">Reading this felt like reading something written just for me. A mother's voice in Telugu — raw, tender, and completely real. My most treasured read.</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-spine" style="background:linear-gradient(to bottom,#a78bfa,#63b3ed)"></div>
+        <div class="book-details">
+          <div class="book-title">A Little Life</div>
+          <div class="book-author">Hanya Yanagihara · Literary Fiction</div>
+          <div class="book-note">The most emotionally devastating novel I've ever read. It broke me and rebuilt me. A meditation on trauma, friendship, and the stubbornness of love.</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-spine" style="background:linear-gradient(to bottom,#f87171,#a78bfa)"></div>
+        <div class="book-details">
+          <div class="book-title">Almond</div>
+          <div class="book-author">Won-pyung Sohn · Fiction</div>
+          <div class="book-note">A quiet, precise story about a boy who cannot feel emotions — and what it takes to reach him. Short but unforgettable. Changed how I think about empathy.</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-spine" style="background:linear-gradient(to bottom,#4ade80,#63b3ed)"></div>
+        <div class="book-details">
+          <div class="book-title">Bend, Not Break</div>
+          <div class="book-author">Ping Fu · Memoir · Self-Help</div>
+          <div class="book-note">A memoir of surviving impossible circumstances with grace. Ping Fu's resilience is the kind that doesn't shout — it just quietly refuses to give up.</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-spine" style="background:linear-gradient(to bottom,#c9a96e,#f59e0b)"></div>
+        <div class="book-details">
+          <div class="book-title">The Monk Who Sold His Ferrari</div>
+          <div class="book-author">Robin Sharma · Self-Help</div>
+          <div class="book-note">The book that started my self-help reading habit. Its message — that simplicity, purpose, and discipline are worth more than success — still guides me.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- WRITING -->
+<div class="writing-section">
+  <div class="content-section">
+    <p class="section-eyebrow">Passion II</p>
+    <h2 class="section-heading">Writing</h2>
+    <div class="writing-intro">
+      <p>Reading so many novels made me want to write. I'm drawn to <strong>fiction and personal writing</strong> — capturing small moments, imagining other lives, putting words to feelings that don't have easy names.</p>
+      <p>Writing, for me, is also how I process things. A journal entry, a short story draft, a scene from a character's life — each one is a way of making sense of the world. I believe reading widely and writing honestly go hand in hand.</p>
+    </div>
+    <div class="writing-cards">
+      <div class="writing-card">
+        <div class="writing-type">Fiction &amp; Novels</div>
+        <h3>Reading to Write Better</h3>
+        <p>Every novel I read teaches me something about character, pacing, and emotion. Books like <em>A Little Life</em> and <em>Almond</em> showed me how much can be said with restraint — a lesson I try to carry into my own writing.</p>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Personal Writing</div>
+        <h3>Journaling &amp; Reflection</h3>
+        <p>I write privately — thoughts, observations, things that made me pause during the day. It's not for an audience. It's for clarity. Writing what I feel helps me understand what I actually think.</p>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Creative</div>
+        <h3>Short Fiction &amp; Characters</h3>
+        <p>I like writing small moments — a conversation, a memory, a turning point. Inspired by the emotional fiction I love reading. I'm interested in ordinary people in extraordinary inner worlds.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- MUSIC -->
+<div class="content-section">
+  <p class="section-eyebrow">Passion III</p>
+  <h2 class="section-heading">Music</h2>
+  <div class="music-row">
+    <div class="music-intro">
+      <p>Music is always on. It follows me through study sessions, late-night coding, walks, and lazy afternoons. I don't stick to one genre — my playlist is a little bit of everything, and I love it that way.</p>
+      <p><strong>Old Telugu songs</strong> are closest to my heart. There's a warmth and poetry in classic Telugu film music that nothing else quite matches — the kind of songs that carry entire memories in a single melody.</p>
+      <p>But I also live for a good mass number that hits hard, a pop song I can't stop humming, or a K-pop track with a chorus that's almost unfairly catchy. My music taste has no rules — only feelings.</p>
+    </div>
+    <div class="genre-stack">
+      <div class="genre-item">
+        <div class="genre-icon">🎙️</div>
+        <div>
+          <div class="genre-label">Old Telugu Songs</div>
+          <div class="genre-desc">The golden era of Telugu film music — soulful melodies, poetic lyrics, voices that feel like home. My all-time favourites.</div>
+        </div>
+      </div>
+      <div class="genre-item">
+        <div class="genre-icon">🔥</div>
+        <div>
+          <div class="genre-label">Mass &amp; Massy Telugu Hits</div>
+          <div class="genre-desc">High-energy, beat-heavy, full-throttle. The kind of songs that make everything feel cinematic and unstoppable.</div>
+        </div>
+      </div>
+      <div class="genre-item">
+        <div class="genre-icon">🎤</div>
+        <div>
+          <div class="genre-label">Pop</div>
+          <div class="genre-desc">Catchy, polished, and always in my head. A good pop song is an engineering marvel — every second is intentional.</div>
+        </div>
+      </div>
+      <div class="genre-item">
+        <div class="genre-icon">💜</div>
+        <div>
+          <div class="genre-label">K-pop</div>
+          <div class="genre-desc">Incredible production, stunning visuals, and choruses that hit different. BTS, BLACKPINK, aespa — the artistry is undeniable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BACK CTA -->
+<div class="cta-strip">
+  <h2>Want to know the engineer?</h2>
+  <p>Head back to the portfolio — projects, skills, education, and how to reach me.</p>
+  <div class="cta-btns">
+    <a href="index.html" class="btn-primary">Back to Portfolio →</a>
+    <a href="projects.html" class="btn-ghost">See My Projects</a>
+    <a href="index.html#contact" class="btn-ghost">Get in Touch</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Mery Renuka Duru. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Portfolio</a>
+    <a href="projects.html">Projects</a>
+    <a href="https://www.linkedin.com/in/mery-renuka-duru-a59826291/" target="_blank">LinkedIn</a>
+    <a href="mailto:meryrenukad938@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const THEME_KEY='portfolio_theme';
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t)}
+function toggleTheme(){const c=document.documentElement.getAttribute('data-theme')||'dark';const n=c==='dark'?'light':'dark';applyTheme(n);try{localStorage.setItem(THEME_KEY,n)}catch{}}
+(function(){let s=null;try{s=localStorage.getItem(THEME_KEY)}catch{}if(s==='light'||s==='dark'){applyTheme(s)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){applyTheme('light')}else{applyTheme('dark')}})();
+</script>
+</body>
+</html>
